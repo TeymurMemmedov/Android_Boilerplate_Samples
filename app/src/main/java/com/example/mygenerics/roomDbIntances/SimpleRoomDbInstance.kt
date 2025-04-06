@@ -1,12 +1,15 @@
 package com.example.mygenerics.roomDbIntances
 
 import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 
 
 //Dont forget change dao,entity,database names
-@Database(entities = [Entity1::class.java,Entity2::class.java], version = 1)
+@Database(entities = [], version = 1)
 abstract class SimpleRoomDbInstance : RoomDatabase() {
-    abstract fun anyDao(): AnyDao
+    abstract fun anyDao(): Any
 
     companion object {
         @Volatile

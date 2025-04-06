@@ -1,0 +1,34 @@
+./gradlew createCleanArch
+
+tasks.register("createCleanArch") {
+    group = "custom"
+    description = "Creates the clean architecture package structure"
+
+
+    doLast {
+        //change package name to the one you want
+        val basePackage = "com.example.myproject"
+        val baseDir = file("src/main/java/${basePackage.replace('.', '/')}")
+
+        val packageStructure = listOf(
+            "data/local",
+            "data/remote",
+            "data/repository",
+            "domain/model",
+            "domain/repository",
+            "domain/use_case",
+            "di",
+            "utils"
+        )
+
+        packageStructure.forEach { relativePath ->
+            val dir = File(baseDir, relativePath)
+            if (dir.mkdirs()) {
+                println("Created package: ${dir.path}")
+            } else {
+                println("Package already exists or failed: ${dir.path}")
+            }
+        }
+
+    }
+}
